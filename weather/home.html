@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="home.css" /> -->
+    <style>
+    
+      * {
+        padding: 0%;
+        margin: 0%;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20vh;
+        top: 50%;
+        left: 50%;
+        width: 20vw;
+        height: 60vh;
+        border: 0.2rem solid green;
+      }
+
+      @media (max-width: 600px) {
+        .box {
+          margin-top: 0%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100vw;
+          height: 100vh;
+          border: 0.2rem solid green;
+        }
+      }
+
+      .first-half {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(196, 229, 243);
+        width: 100%;
+        height: 50%;
+        border: 0.1rem solid transparent;
+      }
+
+      .second-half {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(202, 238, 238);
+        justify-content: center;
+        width: 100%;
+        height: 50%;
+        border: 0.1rem solid transparent;
+      }
+
+      .second-half-div1 {
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .second-half-div2 {
+        text-align: center;
+      }
+
+      h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.9rem;
+        font-weight: 600;
+      }
+
+      h2 {
+        font-weight: 800;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="box">
+      <div class="first-half">
+        <i
+          class="fa-sharp fa-solid fa-sun fa-spin"
+          style="
+            color: rgb(236, 225, 24);
+            padding: 3rem;
+            font-weight: 600;
+            font-size: 4rem;
+          "
+        ></i>
+      </div>
+      <div class="second-half">
+        <div class="second-half-div1">
+          <div>
+            <h1>
+              <i class="fa-solid fa-street-view fa-fade"></i
+              >{%city%},{%country%}
+            </h1>
+          </div>
+          <div>
+            <h2 id="demo"></h2>
+          </div>
+        </div>
+
+        <div class="second-half-div2">
+          <div>
+            <h1 class="currentTemperature">{%temperature%} ℃</h1>
+          </div>
+          <div>
+            <h2 class="min-max">
+              Min {%minTemperature%} ℃ |Max {%maxTemperature%} ℃
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+      const d = new Date();
+      let day = weekday[d.getDay()];
+
+      const month = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      let mahina = month[d.getMonth()];
+
+      const date = d.getDate();
+      if (date < 10) {
+        date = "0" + date;
+      }
+
+      let am_pm = "am";
+      let hour = d.getHours();
+      if (hour < 10) {
+        hour = "0" + hour;
+      } else if (hour > 12) {
+        am_pm = "pm";
+        hour -= 12;
+        hour = "0" + hour;
+      }
+
+      const minute = d.getMinutes();
+      if (minute < 10) {
+        minute = "0" + minute;
+      }
+
+      document.getElementById("demo").innerHTML =
+        day + "|" + date + " " + mahina + "|" + hour + ":" + minute + am_pm;
+    </script>
+  </body>
+</html>
